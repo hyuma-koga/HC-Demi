@@ -18,14 +18,24 @@ public class RingTriggerZone : MonoBehaviour
 
         alreadyPassed = true;
 
+        //プレイヤーが下からくぐったらゲームオーバー
         if (other.transform.position.y < transform.position.y)
         {
             GameOverManager.Instance.TriggerGameOver("リングを下からくぐった");
             return;
         }
 
+        //スコア処理
         RingStatus ringStatus = GetComponentInParent<RingStatus>();
         bool isPerfect = ringStatus != null && ringStatus.IsPerfect();
         ScoreManager.Instance.AddScore(isPerfect);
+
+        //フェードアウト処理
+        RingFadeOut fadeOut = GetComponentInParent<RingFadeOut>();
+        
+        if (fadeOut != null)
+        {
+            fadeOut.FadeAndDisable();
+        }
     }
 }

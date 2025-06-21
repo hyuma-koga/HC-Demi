@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5655740790404031600}
   - component: {fileID: 1553326064544807988}
+  - component: {fileID: 7799327197899765972}
   m_Layer: 0
   m_Name: Ring
   m_TagString: Untagged
@@ -47,6 +48,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchhedEdge: 0
+--- !u!114 &7799327197899765972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3148151100098177367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 816bcfdee85ec1f44ab2243a63112e8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayBeforeFade: 0.2
+  fadeDuration: 0.6
 --- !u!1 &4176483319917825739
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +222,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.48, y: 0.02}
+  m_Offset: {x: 0.48, y: 0.06}
   m_Size: {x: 0.32, y: 0.17}
   m_Direction: 1
 --- !u!1 &8802604091780535692
@@ -277,8 +292,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.06}
-  m_Size: {x: 1.08, y: 0.19}
+  m_Offset: {x: 0, y: -0.2}
+  m_Size: {x: 0.6, y: 0.05}
   m_Direction: 1
 --- !u!114 &7575455379207864930
 MonoBehaviour:

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    public float moveSpeed = 1f;
-    public float rotationRestoreSpeed = 2f;
+    public float speed_Move = 1f;
+    public float speed_RotationRestore = 2f;
 
     private Rigidbody2D rb;
 
@@ -16,7 +16,7 @@ public class PlayerMove : MonoBehaviour
     {
         //x方向だけ速度を一定に維持（リング衝突中は制御しない）
         Vector2 velocity = rb.linearVelocity;
-        velocity.x = moveSpeed;
+        velocity.x = speed_Move;
         rb.linearVelocity = velocity;
     }
 
@@ -28,7 +28,7 @@ public class PlayerMove : MonoBehaviour
             currentZ -= 360f;
         }
 
-        float newZ = Mathf.Lerp(currentZ, 0f, Time.fixedDeltaTime * rotationRestoreSpeed);
+        float newZ = Mathf.Lerp(currentZ, 0f, Time.fixedDeltaTime * speed_RotationRestore);
         transform.rotation = Quaternion.Euler(0f, 0f, newZ);
     }
 }

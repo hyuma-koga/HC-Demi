@@ -5,14 +5,12 @@ using System.Collections;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
-
-    [Header("UI")]
     public TMP_Text text_Score;        //í èÌÉXÉRÉA
     public TMP_Text text_Multiplier;   //î{ó¶
+    public int LastScore {  get; private set; }
 
     private int currentScore = 0;
     private int currentMultiplier = 1;
-
     private Coroutine multiplierDisplayCoroutine;
 
     private void Awake()
@@ -92,5 +90,10 @@ public class ScoreManager : MonoBehaviour
     public int GetCurrentScore()
     {
         return currentScore;
+    }
+
+    public void SaveLastScore()
+    {
+        LastScore = currentScore;
     }
 }
