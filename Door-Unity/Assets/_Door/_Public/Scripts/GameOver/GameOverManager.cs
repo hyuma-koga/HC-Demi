@@ -28,8 +28,13 @@ public class GameOverManager : MonoBehaviour
 
     private IEnumerator ShowResultAfterDelay()
     {
-        Time.timeScale = 0f;
         yield return new WaitForSecondsRealtime(2f); // ŽžŠÔ’âŽ~’†‚Å‚à‘Ò‹@
+        
+        if (resultUI != null)
+        {
+            resultUI.SetActive(true);
+        }
+
         resultManager.ShowResult(
             ScoreManager.Instance.GetCurrentScore(),
             ScoreManager.Instance.LastScore
