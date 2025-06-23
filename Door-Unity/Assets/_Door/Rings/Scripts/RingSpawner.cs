@@ -13,11 +13,10 @@ public class RingSpawner : MonoBehaviour
 
     private float nextSpawnX;
     private List<GameObject> spawnedRings = new List<GameObject>();
-    private float initialOffset = 0f;
 
     private void Start()
     {
-        ResetSpawner();
+        nextSpawnX = player.position.x + Random.Range(minSpawnInterval, maxSpawnInterval);
     }
 
     private void Update()
@@ -34,6 +33,12 @@ public class RingSpawner : MonoBehaviour
         float randomY = Random.Range(minY, maxY);
         Vector3 spawnPosition = new Vector3(nextSpawnX, randomY, 0f);
         GameObject ring = Instantiate(prefab_Ring, spawnPosition, Quaternion.identity);
+        RingCheck ringCheck = ring.GetComponent<RingCheck>();
+        if (ringCheck != null)
+        {
+            ringCheck.player = player;
+        }
+        
         spawnedRings.Add(ring);
     }
 

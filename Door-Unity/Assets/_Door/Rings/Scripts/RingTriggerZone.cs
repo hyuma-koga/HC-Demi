@@ -32,7 +32,7 @@ public class RingTriggerZone : MonoBehaviour
 
         //フェードアウト処理
         RingFadeOut fadeOut = GetComponentInParent<RingFadeOut>();
-        
+
         if (fadeOut != null)
         {
             fadeOut.FadeAndDisable();

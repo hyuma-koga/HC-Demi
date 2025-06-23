@@ -50,6 +50,12 @@ public class ResultManager : MonoBehaviour
                 rb.angularVelocity = 0f;
             }
 
+            PlayerBoundaryChecker checker = player.GetComponent<PlayerBoundaryChecker>();
+            if (checker != null)
+            {
+                checker.ResetBoundaryCheck();
+            }
+
             CameraFollow cameraFollow = FindAnyObjectByType<CameraFollow>();
             if (cameraFollow != null)
             {

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5655740790404031600}
   - component: {fileID: 1553326064544807988}
   - component: {fileID: 7799327197899765972}
+  - component: {fileID: 8215551323926126597}
   m_Layer: 0
   m_Name: Ring
   m_TagString: Untagged
@@ -62,6 +63,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delayBeforeFade: 0.2
   fadeDuration: 0.6
+--- !u!114 &8215551323926126597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3148151100098177367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f3d0c0e85be744eac6fc158282be5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerXOffset: 1
+  player: {fileID: 0}
 --- !u!1 &4176483319917825739
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,6 +251,7 @@ GameObject:
   - component: {fileID: 2187647708062188498}
   - component: {fileID: 5164181731937116256}
   - component: {fileID: 7575455379207864930}
+  - component: {fileID: 2570142634804716473}
   m_Layer: 0
   m_Name: RingTriggerZone
   m_TagString: RingTrigger
@@ -305,5 +321,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 525fb6b51b0d6784dbebec2909034036, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2570142634804716473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8802604091780535692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b272487445fee641bff46b75a72a286, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
