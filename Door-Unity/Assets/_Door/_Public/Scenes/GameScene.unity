@@ -3396,6 +3396,7 @@ MonoBehaviour:
   scoreUI: {fileID: 116802308}
   startPromptUI: {fileID: 251992029}
   player: {fileID: 1023200939}
+  backgroundLooper: {fileID: 569367842}
 --- !u!1 &1023200939
 GameObject:
   m_ObjectHideFlags: 0

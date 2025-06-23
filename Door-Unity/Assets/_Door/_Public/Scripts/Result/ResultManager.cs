@@ -17,6 +17,9 @@ public class ResultManager : MonoBehaviour
     [Header("Player")]
     public GameObject player;
 
+    [Header("Background")]
+    public BackgroundLooper backgroundLooper;
+
     private Vector3 initialPlayerPosition = new Vector3(-1.5f, 0f, 0f);
 
     public void ShowResult(int current, int last)
@@ -49,6 +52,11 @@ public class ResultManager : MonoBehaviour
             {
                 cameraFollow.SnapToTarget();
             }
+        }
+
+        if (backgroundLooper != null)
+        {
+            backgroundLooper.ResetBackgrounds();
         }
 
         Object.FindFirstObjectByType<TitleUIManager>()?.UpdateScoreTexts();

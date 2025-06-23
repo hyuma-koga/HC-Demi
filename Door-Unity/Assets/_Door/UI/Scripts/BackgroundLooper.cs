@@ -5,7 +5,18 @@ public class BackgroundLooper : MonoBehaviour
 {
     public Transform[] backgrounds;
     public Transform player;
-    public float backgroundWidth = 20f;
+    public float backgroundWidth = 5.63f;
+
+    private Vector3[] initialPositions;
+
+    private void Start()
+    {
+        initialPositions = new Vector3[backgrounds.Length];
+        for (int i = 0; i < backgrounds.Length; i++)
+        {
+            initialPositions[i] = backgrounds[i].position;
+        }
+    }
 
     private void Update()
     {
@@ -18,6 +29,14 @@ public class BackgroundLooper : MonoBehaviour
                 newPos.x += backgroundWidth * backgrounds.Length;
                 bg.position = newPos;
             }
+        }
+    }
+
+    public void ResetBackgrounds()
+    {
+        for (int i = 0; i < backgrounds.Length; i++)
+        {
+            backgrounds[i].position = initialPositions[i];
         }
     }
 }
