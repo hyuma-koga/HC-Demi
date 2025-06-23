@@ -14,10 +14,14 @@ public class ResultManager : MonoBehaviour
     public GameObject scoreUI;
     public GameObject startPromptUI;
 
+    [Header("Player")]
+    public GameObject player;
+
+    private Vector3 initialPlayerPosition = new Vector3(-1.5f, 0f, 0f);
+
     public void ShowResult(int current, int last)
     {
         gameObject.SetActive(true);
-
         text_CurrentScore.text = $"{ current}";
         text_LastScore.text = $"{last}";
     }
@@ -28,6 +32,24 @@ public class ResultManager : MonoBehaviour
         scoreUI.SetActive(false);
         startPromptUI.SetActive(false);
         titleUI.SetActive(true);
+
+        if (player != null)
+        {
+            player.transform.position = initialPlayerPosition;
+            Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector2.zero;
+                rb.angularVelocity = 0f;
+            }
+
+            CameraFollow cameraFollow = FindAnyObjectByType<CameraFollow>();
+            if (cameraFollow != null)
+            {
+                cameraFollow.SnapToTarget();
+            }
+        }
 
         Object.FindFirstObjectByType<TitleUIManager>()?.UpdateScoreTexts();
         GameStateManager.Instance.SetState(GameState.Title);

@@ -3395,6 +3395,7 @@ MonoBehaviour:
   titleUI: {fileID: 332722085}
   scoreUI: {fileID: 116802308}
   startPromptUI: {fileID: 251992029}
+  player: {fileID: 1023200939}
 --- !u!1 &1023200939
 GameObject:
   m_ObjectHideFlags: 0
