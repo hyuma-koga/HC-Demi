@@ -17,6 +17,7 @@ public class ResultManager : MonoBehaviour
     public void ShowResult(int current, int last)
     {
         gameObject.SetActive(true);
+
         text_CurrentScore.text = $"{ current}";
         text_LastScore.text = $"{last}";
     }
@@ -28,8 +29,7 @@ public class ResultManager : MonoBehaviour
         startPromptUI.SetActive(false);
         titleUI.SetActive(true);
 
-        ScoreManager.Instance.ResetScore();
-
+        Object.FindFirstObjectByType<TitleUIManager>()?.UpdateScoreTexts();
         GameStateManager.Instance.SetState(GameState.Title);
     }
 }

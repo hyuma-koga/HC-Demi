@@ -5,9 +5,13 @@ using System.Collections;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
+
+    [Header("UI")]
     public TMP_Text text_Score;        //’ÊíƒXƒRƒA
     public TMP_Text text_Multiplier;   //”{—¦
-    public int LastScore {  get; private set; }
+
+    public int LastScore { get; private set; } = 0;
+    public int HighScore { get; private set; } = 0;
 
     private int currentScore = 0;
     private int currentMultiplier = 1;
@@ -18,11 +22,14 @@ public class ScoreManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
+
+        HighScore = PlayerPrefs.GetInt("HighScore", 0);
     }
 
     public void AddScore(bool isPerfect)
@@ -30,16 +37,13 @@ public class ScoreManager : MonoBehaviour
         if (isPerfect)
         {
             currentMultiplier++;   //Š®àø‚È‚ç2”{
-            int addedScore = 1 * currentMultiplier;
-            currentScore += addedScore;
-
+            currentScore += currentMultiplier;
             ShowMultiplierText();
         }
         else
         {
             currentMultiplier = 1;    //U‚ê‚½‚ç”{—¦ƒŠƒZƒbƒg
             currentScore += 1;
-
             text_Multiplier?.gameObject.SetActive(false);
         }
 
@@ -56,7 +60,7 @@ public class ScoreManager : MonoBehaviour
         text_Multiplier.text = currentMultiplier.ToString();
         text_Multiplier.gameObject.SetActive(true);
 
-        if(multiplierDisplayCoroutine != null)
+        if (multiplierDisplayCoroutine != null)
         {
             StopCoroutine(multiplierDisplayCoroutine);
         }
@@ -79,6 +83,18 @@ public class ScoreManager : MonoBehaviour
         text_Multiplier?.gameObject.SetActive(false);
     }
 
+    public void SaveLastScore()
+    {
+        LastScore = currentScore;
+
+        if (currentScore > HighScore)
+        {
+            HighScore = currentScore;
+            PlayerPrefs.SetInt("HighScore", HighScore);
+            PlayerPrefs.Save();
+        }
+    }
+
     private void UpdateUI()
     {
         if (text_Score != null)
@@ -90,10 +106,5 @@ public class ScoreManager : MonoBehaviour
     public int GetCurrentScore()
     {
         return currentScore;
-    }
-
-    public void SaveLastScore()
-    {
-        LastScore = currentScore;
     }
 }

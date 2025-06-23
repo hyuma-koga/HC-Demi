@@ -13,6 +13,8 @@ public class StartPromptManager : MonoBehaviour
             {
                 startPromptUI.SetActive(false);
                 scoreUI.SetActive(true);
+
+                ScoreManager.Instance.ResetScore();
                 GameStateManager.Instance.SetState(GameState.Playing);
             }
         }

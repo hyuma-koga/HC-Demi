@@ -22,7 +22,6 @@ public class GameOverManager : MonoBehaviour
     public void TriggerGameOver(string reason)
     {
         Time.timeScale = 0f;
-        ScoreManager.Instance.SaveLastScore(); // スコア保存
         StartCoroutine(ShowResultAfterDelay());
     }
 
@@ -30,14 +29,15 @@ public class GameOverManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(2f); // 時間停止中でも待機
         
+        int currentScore = ScoreManager.Instance.GetCurrentScore();
+        int lastScore = ScoreManager.Instance.LastScore;
+
         if (resultUI != null)
         {
             resultUI.SetActive(true);
         }
 
-        resultManager.ShowResult(
-            ScoreManager.Instance.GetCurrentScore(),
-            ScoreManager.Instance.LastScore
-        );
+        resultManager.ShowResult(currentScore, lastScore);
+        ScoreManager.Instance.SaveLastScore();
     }
 }
