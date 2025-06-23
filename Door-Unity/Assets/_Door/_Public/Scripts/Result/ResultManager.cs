@@ -20,6 +20,9 @@ public class ResultManager : MonoBehaviour
     [Header("Background")]
     public BackgroundLooper backgroundLooper;
 
+    [Header("RingSpawner")]
+    public RingSpawner ringSpawner;
+
     private Vector3 initialPlayerPosition = new Vector3(-1.5f, 0f, 0f);
 
     public void ShowResult(int current, int last)
@@ -57,6 +60,11 @@ public class ResultManager : MonoBehaviour
         if (backgroundLooper != null)
         {
             backgroundLooper.ResetBackgrounds();
+        }
+
+        if (ringSpawner != null)
+        {
+            ringSpawner.ResetSpawner();
         }
 
         Object.FindFirstObjectByType<TitleUIManager>()?.UpdateScoreTexts();

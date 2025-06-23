@@ -3397,6 +3397,7 @@ MonoBehaviour:
   startPromptUI: {fileID: 251992029}
   player: {fileID: 1023200939}
   backgroundLooper: {fileID: 569367842}
+  ringSpawner: {fileID: 1029641175}
 --- !u!1 &1023200939
 GameObject:
   m_ObjectHideFlags: 0

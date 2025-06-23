@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class RingSpawner : MonoBehaviour
 {
@@ -7,14 +8,16 @@ public class RingSpawner : MonoBehaviour
     public float spawnOffsetX = 20f;
     public float minY = -2f;
     public float maxY = 2f;
-    public float minSpawnInterval = 5f;
-    public float maxSpawnInterval = 7f;
+    public float minSpawnInterval = 4f;
+    public float maxSpawnInterval = 6f;
 
     private float nextSpawnX;
+    private List<GameObject> spawnedRings = new List<GameObject>();
+    private float initialOffset = 0f;
 
     private void Start()
     {
-        nextSpawnX = player.position.x + Random.Range(minSpawnInterval, maxSpawnInterval);
+        ResetSpawner();
     }
 
     private void Update()
@@ -30,6 +33,21 @@ public class RingSpawner : MonoBehaviour
     {
         float randomY = Random.Range(minY, maxY);
         Vector3 spawnPosition = new Vector3(nextSpawnX, randomY, 0f);
-        Instantiate(prefab_Ring, spawnPosition, Quaternion.identity);
+        GameObject ring = Instantiate(prefab_Ring, spawnPosition, Quaternion.identity);
+        spawnedRings.Add(ring);
+    }
+
+    public void ResetSpawner()
+    {
+        foreach (GameObject ring in spawnedRings)
+        {
+            if (ring != null)
+            {
+                Destroy(ring);
+            }
+        }
+
+        spawnedRings.Clear();
+        nextSpawnX = player.position.x + Random.Range(minSpawnInterval, maxSpawnInterval);
     }
 }
