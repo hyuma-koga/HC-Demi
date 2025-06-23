@@ -13,6 +13,11 @@ public class PlayerJump : MonoBehaviour
 
     public void HandleJumpInput()
     {
+        if (!InputManager.Instance.IsInputEnabled())
+        {
+            return;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, force_Jump);

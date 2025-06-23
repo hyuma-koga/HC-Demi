@@ -4,24 +4,59 @@ public class PlayerBoundaryChecker : MonoBehaviour
 {
     public float minY = -4.6f;
     public float maxY = 4.7f;
+    public float bounceForce = 6f;
+    public float dampingRate = 0.8f;
+    public float minBounceForce = 1f;
+    public float gameOverDelay = 0.1f;
 
+    private Rigidbody2D rb;
     private bool hasTriggeredGameOver = false;
+    private int bounceCount = 0;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     private void Update()
     {
         float y = transform.position.y;
 
-        if (!hasTriggeredGameOver && (y < minY || y > maxY))
+        if (y < minY)
         {
-            hasTriggeredGameOver = true;
-            Debug.Log("Y²§ŒÀ‚ğ’´‚¦‚½‚Ì‚ÅƒQ[ƒ€ƒI[ƒo[");
-            GameOverManager.Instance.TriggerGameOver("Y out of bounds");
+            Bounce(Vector2.up);
+        }
+        else if (y > maxY)
+        {
+            Bounce(Vector2.down);
         }
     }
 
-    // ƒQ[ƒ€ÄƒXƒ^[ƒg‚ÉƒŠƒZƒbƒg‚³‚ê‚é‚æ‚¤‚É‚·‚é
+    private void Bounce(Vector2 direction)
+    {
+        float currentForce = bounceForce * Mathf.Pow(dampingRate, bounceCount);
+        currentForce = Mathf.Max(currentForce, minBounceForce);
+
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f); // yï¿½ï¿½ï¿½xï¿½ï¿½ï¿½Zï¿½bï¿½g
+        rb.AddForce(direction * currentForce, ForceMode2D.Impulse); // ? ï¿½ï¿½ï¿½ï¿½ï¿½Í‚ï¿½Kï¿½p
+
+        bounceCount++;
+
+        if (!hasTriggeredGameOver)
+        {
+            hasTriggeredGameOver = true;
+            Invoke(nameof(TriggerGameOver), gameOverDelay);
+        }
+    }
+
     public void ResetBoundaryCheck()
     {
         hasTriggeredGameOver = false;
+        bounceCount = 0;
+    }
+
+    private void TriggerGameOver()
+    {
+        GameOverManager.Instance.TriggerGameOver("Hit top or bottom");
     }
 }

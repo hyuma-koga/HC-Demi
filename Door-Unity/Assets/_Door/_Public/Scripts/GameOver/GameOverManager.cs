@@ -21,7 +21,7 @@ public class GameOverManager : MonoBehaviour
 
     public void TriggerGameOver(string reason)
     {
-        Time.timeScale = 0f;
+        InputManager.Instance.SetInputEnabled(false);
         StartCoroutine(ShowResultAfterDelay());
     }
 

@@ -16,6 +16,7 @@ public class StartPromptManager : MonoBehaviour
 
                 ScoreManager.Instance.ResetScore();
                 GameStateManager.Instance.SetState(GameState.Playing);
+                InputManager.Instance.SetInputEnabled(true);
             }
         }
     }
