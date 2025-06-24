@@ -65,12 +65,14 @@ public class ResultManager : MonoBehaviour
             }
 
             PlayerBoundaryChecker checker = player.GetComponent<PlayerBoundaryChecker>();
+            
             if (checker != null)
             {
                 checker.ResetBoundaryCheck();
             }
 
             CameraFollow cameraFollow = FindAnyObjectByType<CameraFollow>();
+            
             if (cameraFollow != null)
             {
                 cameraFollow.SnapToTarget();

@@ -36,6 +36,12 @@ public class TitleUIManager : MonoBehaviour
     {
         titleUI.SetActive(false);
         startPromptUI.SetActive(true);
+
+        if (GameOverManager.Instance != null)
+        {
+            GameOverManager.Instance.ResetGameOverTrigger();
+        }
+
         GameStateManager.Instance.SetState(GameState.WaitingForClick);
     }
 

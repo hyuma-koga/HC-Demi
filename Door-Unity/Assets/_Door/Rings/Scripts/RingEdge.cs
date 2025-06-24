@@ -7,6 +7,7 @@ public class RingEdge : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             RingStatus ringStatus = GetComponentInParent<RingStatus>();
+
             if (ringStatus != null)
             {
                 ringStatus.MarkTouched();

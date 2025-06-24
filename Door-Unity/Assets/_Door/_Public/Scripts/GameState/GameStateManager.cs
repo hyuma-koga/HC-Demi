@@ -23,6 +23,7 @@ public class GameStateManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
         CurrentState = GameState.Title;
         Time.timeScale = 0f;
     }

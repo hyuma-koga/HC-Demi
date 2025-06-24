@@ -23,6 +23,7 @@ public class PlayerMove : MonoBehaviour
     private void FixedUpdate()
     {
         float currentZ = transform.rotation.eulerAngles.z;
+
         if(currentZ > 100f)
         {
             currentZ -= 360f;

@@ -14,7 +14,6 @@ public class PlayerColorController : MonoBehaviour
             playerRenderer.sprite = perfectSprite;
             transform.localScale = normalScale;
         }
-            
     }
 
     public void SetNormalSprite()

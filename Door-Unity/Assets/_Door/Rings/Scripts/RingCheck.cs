@@ -16,8 +16,10 @@ public class RingCheck : MonoBehaviour
 
     private void Update()
     {
-        if (player == null || hasTriggeredGameOver)
+        if (player == null || hasTriggeredGameOver) 
+        {
             return;
+        }
 
         if (player.position.x > transform.position.x + triggerXOffset)
         {

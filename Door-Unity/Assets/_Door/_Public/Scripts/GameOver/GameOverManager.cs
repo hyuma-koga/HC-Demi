@@ -6,6 +6,10 @@ public class GameOverManager : MonoBehaviour
     public static GameOverManager Instance;
     public ResultManager resultManager;
     public GameObject resultUI;
+    public AudioClip gameOverSound;
+
+    private AudioSource audioSource;
+    private bool hasTriggeredGameOver = false;
 
     private void Awake()
     {
@@ -17,11 +21,26 @@ public class GameOverManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void TriggerGameOver(string reason)
     {
+        if (hasTriggeredGameOver)
+        {
+            return;
+        }
+
+        hasTriggeredGameOver = true;
+
         InputManager.Instance.SetInputEnabled(false);
+
+        if (gameOverSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(gameOverSound);
+        }
+
         StartCoroutine(ShowResultAfterDelay());
     }
 
@@ -34,5 +53,10 @@ public class GameOverManager : MonoBehaviour
 
         resultManager.ShowResult(currentScore, lastScore);
         ScoreManager.Instance.SaveLastScore();
+    }
+
+    public void ResetGameOverTrigger()
+    {
+        hasTriggeredGameOver = false;
     }
 }

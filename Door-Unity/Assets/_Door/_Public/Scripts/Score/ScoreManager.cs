@@ -16,6 +16,10 @@ public class ScoreManager : MonoBehaviour
     [Header("Visual")]
     public PlayerColorController playerColorController;
 
+    [Header("Audio")]
+    public AudioClip scoreSound;
+    private AudioSource audioSource;
+
     public int LastScore { get; private set; } = 0;
     public int HighScore { get; private set; } = 0;
 
@@ -36,6 +40,7 @@ public class ScoreManager : MonoBehaviour
         }
 
         HighScore = PlayerPrefs.GetInt("HighScore", 0);
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void AddScore(bool isPerfect)
@@ -55,6 +60,12 @@ public class ScoreManager : MonoBehaviour
             text_Multiplier?.gameObject.SetActive(false);
             playerEffectController?.StopEffect();
             playerColorController?.SetNormalSprite();
+        }
+
+        if (GameStateManager.Instance.CurrentState == GameState.Playing &&
+           scoreSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(scoreSound);
         }
 
         UpdateUI();

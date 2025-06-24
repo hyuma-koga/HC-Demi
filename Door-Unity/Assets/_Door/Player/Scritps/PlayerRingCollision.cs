@@ -29,7 +29,6 @@ public class PlayerRingCollision : MonoBehaviour
             Vector2 direction = (center - contactPoint).normalized;
 
             rb.AddForce(direction * force_bounce, ForceMode2D.Impulse);
-
             float torqueDirection = Mathf.Sign(Vector3.Cross(direction, Vector3.forward).z);
             rb.AddTorque(torqueDirection * force_torque, ForceMode2D.Impulse);
         }
