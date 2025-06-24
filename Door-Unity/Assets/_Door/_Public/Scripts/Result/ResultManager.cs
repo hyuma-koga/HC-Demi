@@ -24,9 +24,17 @@ public class ResultManager : MonoBehaviour
     public RingSpawner ringSpawner;
 
     private Vector3 initialPlayerPosition = new Vector3(-1.5f, 0f, 0f);
+    private bool hasShownResult = false;
 
     public void ShowResult(int current, int last)
     {
+        if (hasShownResult)
+        {
+            return;
+        }
+
+        hasShownResult = true;
+        resultUI.SetActive(true);
         gameObject.SetActive(true);
         text_CurrentScore.text = $"{ current}";
         text_LastScore.text = $"{last}";
@@ -34,7 +42,13 @@ public class ResultManager : MonoBehaviour
 
     public void ReturnToTitle()
     {
-        resultUI.SetActive(false);
+        hasShownResult = false;
+
+        if (resultUI != null)
+        {
+            resultUI.SetActive(false);
+        }
+
         scoreUI.SetActive(false);
         startPromptUI.SetActive(false);
         titleUI.SetActive(true);

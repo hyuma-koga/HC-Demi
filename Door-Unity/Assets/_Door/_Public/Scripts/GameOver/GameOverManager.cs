@@ -32,11 +32,6 @@ public class GameOverManager : MonoBehaviour
         int currentScore = ScoreManager.Instance.GetCurrentScore();
         int lastScore = ScoreManager.Instance.LastScore;
 
-        if (resultUI != null)
-        {
-            resultUI.SetActive(true);
-        }
-
         resultManager.ShowResult(currentScore, lastScore);
         ScoreManager.Instance.SaveLastScore();
     }

@@ -10,6 +10,12 @@ public class ScoreManager : MonoBehaviour
     public TMP_Text text_Score;        //í èÌÉXÉRÉA
     public TMP_Text text_Multiplier;   //î{ó¶
 
+    [Header("Effect")]
+    public PlayerEffectController playerEffectController;
+
+    [Header("Visual")]
+    public PlayerColorController playerColorController;
+
     public int LastScore { get; private set; } = 0;
     public int HighScore { get; private set; } = 0;
 
@@ -39,12 +45,16 @@ public class ScoreManager : MonoBehaviour
             currentMultiplier++;   //äÆ‡¯Ç»ÇÁ2î{
             currentScore += currentMultiplier;
             ShowMultiplierText();
+            playerEffectController?.PlayEffect();
+            playerColorController?.SetPerfectSprite();
         }
         else
         {
             currentMultiplier = 1;    //êUÇÍÇΩÇÁî{ó¶ÉäÉZÉbÉg
             currentScore += 1;
             text_Multiplier?.gameObject.SetActive(false);
+            playerEffectController?.StopEffect();
+            playerColorController?.SetNormalSprite();
         }
 
         UpdateUI();
@@ -81,6 +91,8 @@ public class ScoreManager : MonoBehaviour
         currentMultiplier = 1;
         UpdateUI();
         text_Multiplier?.gameObject.SetActive(false);
+        playerEffectController?.StopEffect();
+        playerColorController?.SetNormalSprite();
     }
 
     public void SaveLastScore()
